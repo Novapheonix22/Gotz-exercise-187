@@ -1,0 +1,79 @@
+//Author ANTHONY GOTZ
+//Class CPT-187
+//START-DATE 4/15/20
+//Purpose This class sets the write order and is used to write data to an external file
+package edu.cpt187.gotz.participation;
+
+import java.io.IOException;//exception import
+
+import java.io.PrintWriter;//PrintWriter import
+
+import java.io.FileWriter;//FileWriter import
+
+public class OrderWriter //start of class
+{
+	private boolean FOUND = true;//declare and initalize FOUND
+
+	private boolean NOT_FOUND = false;//declare and initalize NOT_FOUND
+
+	private boolean fileFoundFlag =  false;//declare and initializing fileFoundFlag
+
+	private String masterFileName = "";//declare and initializing masterFileName
+
+	private int recordCount = 0;//declare and initializing recordCount
+
+
+	OrderWriter(String borrowedFileName)//start of order writer object
+	{
+		masterFileName = borrowedFileName;
+	}//end of order writer object
+
+	public void setWriteOrder(int borrowedItemID, String borrowedItemName, double borrowedItemPrice, int borrowedQuantity, double borrowedOrderCost)//start of set write order
+	{
+
+		try//begin try block
+		{ 
+
+			PrintWriter filePW = new PrintWriter(new FileWriter(masterFileName, true));
+
+			filePW.printf("%n%d\t%s\t%f\t%d\t%f%n", borrowedItemID, borrowedItemName, borrowedItemPrice, borrowedQuantity, borrowedOrderCost);
+
+			fileFoundFlag = FOUND;
+
+			recordCount++;
+
+			filePW.close();
+
+		}//end try block
+		catch(IOException ex)//begin catch block
+		{
+
+			fileFoundFlag = NOT_FOUND;
+
+		}//end catch block
+
+
+	}//end of set write order
+
+	public boolean getFileFoundFlag()//start of get file found flag
+	{
+
+		return fileFoundFlag;
+
+	}//end of get file found flag
+
+	public String getFileName()//start of get file Name
+	{
+
+		return masterFileName;
+
+	}//end of get file name
+
+	public int getRecordCount()//start of get record count
+	{
+
+		return recordCount;
+
+	}//end of get record count
+
+}//end of class
