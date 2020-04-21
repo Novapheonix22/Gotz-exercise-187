@@ -1,0 +1,323 @@
+//Author ANTHONY GOTZ
+//Class CPT-187
+//START-DATE 4/15/20
+//Purpose This is the sod order class where arrays are set, values are obtained and menuchoices are locked in via assigning variables values.
+package edu.cpt187.gotz.participation;
+
+public class SodOrder
+{
+	//variables and constants
+	private final double ZERO_TOTAL = 0.0;//declare and initalize ZERO_TOTAL
+
+	private final double TAX_RATE = .075;//declare and initalize TAX_RATE
+
+	private int[] itemCounts;//declare and initalize item count array
+
+	private int[] discountCounts;//declare and initalize discount count array
+
+	private int[] prizeCounts;//declare and initalize prize count array
+
+	private char discountType = ' ';//declare and initalize discount type
+
+	private int itemID = 0;//declare and initalize item id
+
+	private String itemName = "";//declare and initalize item name
+
+	private double itemPrice = 0.0;//declare and initalize item price
+
+	private String discountName = "";//declare and initalize discount name
+
+	private double discountRate = 0.0;//declare and initalize discount rate
+
+	private int howMany = 0;//declare and initalize howmany
+
+	private int lastItemSelectedIndex = 0;//declare and initalize last item selected index
+
+	private String prizeName = "";//declare and initalize prize name
+
+	//constructor
+	public SodOrder()
+	{
+	}
+
+	//begin setters
+	public void setItemCountArray(int borrowedMaxRecords)//begin set item count array
+	{
+
+		if(itemCounts == null)//if item count is == to null
+		{
+
+			itemCounts = new int[borrowedMaxRecords];//creating item count array
+
+		}//end of if
+
+	}//end set item count array
+
+	public void setItemName(String[] borrowedITEM_NAMES)//begin of set item name
+	{
+
+
+		itemName = borrowedITEM_NAMES[lastItemSelectedIndex];//assignment statement
+
+		itemCounts[lastItemSelectedIndex]++;//increment counter
+
+	}//end of item name
+
+	public void setLastItemSelectionIndex(int borrowedSearchIndex)//begin set last item selected index
+	{
+
+		lastItemSelectedIndex = borrowedSearchIndex;//assignment statement
+
+	}//end set last item selected index
+
+	public void setItemID(int[] borrowedITEM_IDS)//begin set item id
+	{
+
+		itemID = borrowedITEM_IDS[lastItemSelectedIndex];//assignment statement
+
+	}//end item id
+
+	public void setItemPrice(double[] borrowedITEM_PRICES)//begin set item price
+	{
+
+		itemPrice = borrowedITEM_PRICES[lastItemSelectedIndex];//assignment statement
+
+	}//end item price
+
+	public void setHowMany(int borrowedHowMany)//begin set how many
+	{
+
+		howMany = borrowedHowMany;//assignment statement
+
+	}//end set how many
+
+	public void setDiscountType(char borrowedMenuSelection)//begin set dicount type
+	{
+
+		discountType = borrowedMenuSelection;//assignment statement
+
+	}//end discount type
+
+	public void setDecreaseInStock(Inventory borrowedInventoryObject)//begin  set decrease in stock
+	{
+
+		borrowedInventoryObject.setReduceStock(howMany);
+
+	}//end reduce in stock
+
+	public void setDiscountName(String[] borrowedDISCOUNT_NAMES) //begin discount name
+	{
+
+		if(discountCounts == null)//begin == null if
+		{
+
+			discountCounts = new int[borrowedDISCOUNT_NAMES.length];//create discount count array
+
+		}//end == null if
+
+		if(discountType == 'A')//begin if == A
+		{
+
+			discountName = borrowedDISCOUNT_NAMES[0];//assignment statement
+
+			discountCounts[0]++;//increment counter
+
+		}//end if == A
+
+		else if(discountType == 'B')//begin if == B
+		{
+
+			discountName = borrowedDISCOUNT_NAMES[1];//assignment statement
+
+			discountCounts[1]++;//increment counter
+
+		}//end if == B
+
+		else//begin else
+		{
+
+			discountName = borrowedDISCOUNT_NAMES[2];//assignment statement
+
+			discountCounts[2]++;//increment counter
+
+		}//end else
+
+	}//end discount name
+
+	public void setDiscountRate(double[] borrowedDISCOUNT_RATES)//begin discount rate
+	{
+
+		if(discountType == 'A')//begin if == A
+		{
+
+			discountRate = borrowedDISCOUNT_RATES[0];//assignment statement
+
+		}//end if == A
+
+		else if(discountType == 'B')//begin if == B
+		{
+
+			discountRate = borrowedDISCOUNT_RATES[1];//assignment statement
+
+		}//end if == B
+
+		else//begin else
+		{
+
+			discountRate = borrowedDISCOUNT_RATES[2];//assignment statement
+
+		}//end else
+
+	}//end discount rate
+
+	public void setPrizeName(int borrowedPrizeIndex, String[] borrowedPRIZE_NAMES)//begin prize name
+	{
+
+		if(prizeCounts == null)//create prize count array
+		{
+
+			prizeCounts = new int[borrowedPRIZE_NAMES.length];//writing prize count array
+
+		}//end 
+
+		prizeName = borrowedPRIZE_NAMES[borrowedPrizeIndex];//assignment statement
+
+		prizeCounts[borrowedPrizeIndex]++;//increment counter
+
+	}//end prize name
+	//end setters
+	//begin getters
+
+
+	public String getItemName()//begin return item name
+	{
+
+		return itemName;//return statement
+
+	}//end return item name
+
+	public String getDiscountName()//begin return discount name
+	{
+
+		return discountName;//return statement
+
+	}//end return discount name
+
+	public double getItemPrice()//begin return item price
+	{
+
+		return itemPrice;//return statement
+
+	}//end return item price
+
+	public double getDiscountRate()//begin return discount rate
+	{
+
+		return discountRate;//return statement
+
+	}//end return discount rate
+
+	public int[] getItemCounts()//begin return item counts
+	{
+
+		return itemCounts;//return statement
+
+	}//end return item counts
+
+	public int[] getPrizeCounts()//begin return prize counts
+	{
+
+		return prizeCounts;//return statement
+
+	}//end return prize counts
+
+	public String getPrizeName()//begin return prize name
+	{
+
+		return prizeName;//return statement
+
+	}//end return prize name
+
+	public int getInStockCounts(int[] borrowedInStockCounts)//begin return in stock counts
+	{
+
+		return borrowedInStockCounts[lastItemSelectedIndex];//return statement
+
+	}//end return in stock counts
+
+	public int getItemID()//begin return item id
+	{
+
+		return itemID;//return statement
+
+	}//end return item id
+
+	public int getHowMany()//begin return how many
+	{
+
+		return howMany;//return statement
+
+	}//end return how many
+
+	public int[] getDiscountCounts()//begin return discount counts
+	{
+
+		return discountCounts;//return statement
+
+	}//end return discount counts
+
+	public double getDiscountAmt()//begin return discount amt
+	{
+
+		return itemPrice * discountRate;//return statement
+
+	}//end return discount amt
+
+	public double getDiscountPrice()//begin return discount price
+	{
+
+		return itemPrice - getDiscountAmt();//return statement
+
+	}//end return discount price
+
+	public double getSubTotal()//begin return subtotal
+	{
+
+		return howMany * getDiscountPrice();//return statement
+
+	}//end return subtotal
+
+	public double getTaxRate()//begin return tax rate
+	{
+
+		return TAX_RATE;//return statement
+
+	}//end return tax rate
+
+	public double getTaxAmt()//begin return tax amt
+	{
+
+		return TAX_RATE * getSubTotal();//return statement
+
+	}//end return tax amt
+
+	public double getTotalCost()//begin return total cots
+	{
+
+		if(discountType == ' ')//begin if == ' '
+		{
+
+			return ZERO_TOTAL;//return statement
+
+		}//end if == ' '
+
+		else//begin else
+		{
+
+			return getSubTotal() + getTaxAmt();//return statement
+
+		}//end else
+
+	}//end return total cost
+	//end getters
+}//end of class
